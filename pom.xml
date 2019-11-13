@@ -59,7 +59,7 @@
 			    </execution>
 			  </executions>
 			  <configuration>
-			    <repository>spotify/foobar</repository>
+			    <repository>arpit07/cicd-applied-to-spring-boot-java-app</repository>
 			    <tag>${project.version}</tag>
 			    <buildArgs>
 			      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
