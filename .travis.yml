@@ -1,4 +1,16 @@
 language: java
 
 jdk:
- - openjdk8
+- openjdk8
+
+services:
+- docker
+
+before_install:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker pull openjdk:8-jdk-alpine
+
+script:
+- echo -e '<?xml version="1.0" encoding="UTF-8"?>\n<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">\n<pluginGroups></pluginGroups>\n<proxies></proxies>\n<servers></servers>\n<mirrors></mirrors>\n<profiles></profiles>\n</settings>'
+- cat $HOME/.m2/settings.xml
+- mvn deploy
