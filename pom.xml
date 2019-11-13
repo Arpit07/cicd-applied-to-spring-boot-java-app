@@ -49,20 +49,13 @@
 			  <groupId>com.spotify</groupId>
 			  <artifactId>dockerfile-maven-plugin</artifactId>
 			  <version>${dockerfile-maven-version}</version>
-			  <executions>
-			    <execution>
-			      <id>default</id>
-			      <goals>
-			        <goal>build</goal>
-			        <goal>push</goal>
-			      </goals>
-			    </execution>
-			  </executions>
 			  <configuration>
+			    <username>arpit07</username>
+        		<password>Welcome@5724</password>
 			    <repository>arpit07/cicd-applied-to-spring-boot-java-app</repository>
 			    <tag>${project.version}</tag>
 			    <buildArgs>
-			      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+			      <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 			    </buildArgs>
 			  </configuration>
 			</plugin>
