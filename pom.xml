@@ -18,6 +18,9 @@
 		<java.version>1.8</java.version>		
 		<maven.deploy.skip>true</maven.deploy.skip>
 		<dockerfile-maven-version>1.4.9</dockerfile-maven-version>
+		<!-- solving error : Invalid or corrupt jarfile /app.jar -->      
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<dependencies>
