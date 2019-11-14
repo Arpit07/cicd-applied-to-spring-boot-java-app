@@ -16,11 +16,20 @@
 
 	<properties>
 		<java.version>1.8</java.version>		
-		<maven.deploy.skip>true</maven.deploy.skip>
+
 		<dockerfile-maven-version>1.4.9</dockerfile-maven-version>
-		<!-- solving error : Invalid or corrupt jarfile /app.jar -->      
+		<!-- solving error : Invalid or corrupt jarfile /app.jar -->   
+		   
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- property useful for  spotify's dockerfile-maven-plugin -->
+		
+		<docker.image.prefix>arpit07</docker.image.prefix>
+		
+		<!--Not adding artifacts to remote repository-->
+		
+		<maven.deploy.skip>true</maven.deploy.skip>
+		
 	</properties>
 
 	<dependencies>
@@ -52,14 +61,21 @@
 			  <groupId>com.spotify</groupId>
 			  <artifactId>dockerfile-maven-plugin</artifactId>
 			  <version>${dockerfile-maven-version}</version>
+			   <executions>
+					<execution>
+						<id>default</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
 			  <configuration>
-			    <username>arpit07</username>
-        		<password>Welcome@5724</password>
-			    <repository>arpit07/cicd-applied-to-spring-boot-java-app</repository>
+			    <repository>${docker.image.prefix}/${project.artifactId}</repository>
 			    <tag>${project.version}</tag>
-			    <buildArgs>
-			      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-			    </buildArgs>
+			    <serverId>index.docker.io</serverId>
+	      		<registryUrl>https://index.docker.io:443/v1/</registryUrl>
 			  </configuration>
 			</plugin>
 			<plugin>
